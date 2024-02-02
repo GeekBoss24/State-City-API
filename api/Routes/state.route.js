@@ -7,7 +7,7 @@ router.post("/add-state", addState)
 
 router.get("/get-state", getState)
 
-router.get("/get-district", getDistrict)
+router.get("/get-district/:state", getDistrict)
 
 router.get('/all-data', allData)
 
