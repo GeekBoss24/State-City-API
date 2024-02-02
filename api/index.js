@@ -1,5 +1,6 @@
 import express from "express"
 import dotenv from "dotenv"
+import cors from "cors"
 import connectDb from "./DB/ConnectDB.js"
 import stateRouter from "./Routes/state.route.js"
 
@@ -10,6 +11,8 @@ dotenv.config()
 connectDb()
 
 app.use(express.json())
+
+app.use(cors())
 
 app.use(stateRouter)
 
