@@ -36,19 +36,27 @@ const getState = async(req, res, next) => {
     }
 }
 
-const getDistrict = async(req, res, next) => {
-    try{
-        const { state } = req.body
-        const data = await State.findOne({ state })
+const getDistrict = async (req, res, next) => {
+    try {
+        const { state } = req.params; // Use req.params to get the state from the URL
+        const data = await State.findOne({ state });
+
+        if (!data) {
+            // Handle the case where no data is found for the given state
+            return res.status(404).send({
+                message: 'State not found',
+                status: 0
+            });
+        }
+
         res.status(200).send({
-            message:data,
-            status:1
-        })
+            message: data,
+            status: 1
+        });
+    } catch (err) {
+        next(err);
     }
-    catch(err){
-        next(err)
-    }
-}
+};
 
 const allData = async(req, res, next) => {
     try{
