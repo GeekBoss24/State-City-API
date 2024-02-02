@@ -22,4 +22,32 @@ const addState = async(req, res, next) => {
     }
 }
 
-export { addState }
+const getState = async(req, res, next) => {
+    try{
+        const data = await State.find()
+
+        res.status(200).send({
+            message:data,
+            status:1
+        })
+    }
+    catch(err){
+        next(err)
+    }
+}
+
+const getDistrict = async(req, res, next) => {
+    try{
+        const { state } = req.body
+        const data = await State.findOne({ state })
+        res.status(200).send({
+            message:data,
+            status:1
+        })
+    }
+    catch(err){
+        next(err)
+    }
+}
+
+export { addState, getState, getDistrict }
