@@ -24,7 +24,7 @@ const addState = async(req, res, next) => {
 
 const getState = async(req, res, next) => {
     try{
-        const data = await State.find()
+        const data = await State.distinct('state')
 
         res.status(200).send({
             message:data,
@@ -50,4 +50,17 @@ const getDistrict = async(req, res, next) => {
     }
 }
 
-export { addState, getState, getDistrict }
+const allData = async(req, res, next) => {
+    try{
+        const data = await State.find()
+        res.status(200).send({
+            message:data,
+            status:1
+        })
+    }
+    catch(err){
+        next(err)
+    }
+}
+
+export { addState, getState, getDistrict, allData }
