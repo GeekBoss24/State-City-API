@@ -13,6 +13,12 @@ app.use(express.json())
 
 app.use(stateRouter)
 
+app.use((req, res)  => {
+    res.json({
+        message:"API is working"
+    })
+})
+
 //middleware
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500
