@@ -12,7 +12,9 @@ connectDb()
 
 app.use(express.json())
 
-app.use(cors())
+const allowedOrigins = ['https://milan.aaonisaa.com', 'http://localhost:5173', 'http://localhost:5174', 'https://js.aaonisaa.com'];
+app.use(cors({credentials: true, origin: allowedOrigins}))
+
 
 app.use(stateRouter)
 
